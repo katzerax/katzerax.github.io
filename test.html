@@ -2,16 +2,47 @@
   <head>
     <title>HTML Minigame</title>
     <script>
-      var points = 0;
       function earnPoints() {
+        // Check if a points cookie exists
+        var points = getCookie("points");
+        if (points == "") {
+          points = 0;
+        } else {
+          points = parseInt(points);
+        }
         points += 1;
+        // Save the updated points value to a cookie
+        setCookie("points", points, 365);
         document.getElementById("points").innerHTML = points;
+      }
+      
+      function setCookie(cname, cvalue, exdays) {
+        var d = new Date();
+        d.setTime(d.getTime() + (exdays*24*60*60*1000));
+        var expires = "expires="+ d.toUTCString();
+        document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+      }
+      
+      function getCookie(cname) {
+        var name = cname + "=";
+        var decodedCookie = decodeURIComponent(document.cookie);
+        var ca = decodedCookie.split(';');
+        for(var i = 0; i <ca.length; i++) {
+          var c = ca[i];
+          while (c.charAt(0) == ' ') {
+            c = c.substring(1);
+          }
+          if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);
+          }
+        }
+        return "";
       }
     </script>
   </head>
-  <body>
+  <body onload="earnPoints()">
     <h1>HTML Minigame</h1>
     <button onclick="earnPoints()">Earn Points</button>
-    <p>Points: <span id="points">0</span></p>
+    <p>Points: <span id="points"></span></p>
   </body>
 </html>
