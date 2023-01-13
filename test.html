@@ -1,0 +1,17 @@
+<html>
+  <head>
+    <title>HTML Minigame</title>
+    <script>
+      var points = 0;
+      function earnPoints() {
+        points += 1;
+        document.getElementById("points").innerHTML = points;
+      }
+    </script>
+  </head>
+  <body>
+    <h1>HTML Minigame</h1>
+    <button onclick="earnPoints()">Earn Points</button>
+    <p>Points: <span id="points">0</span></p>
+  </body>
+</html>
