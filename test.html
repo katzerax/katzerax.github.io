@@ -10,7 +10,12 @@
         } else {
           points = parseInt(points);
         }
-        points += 1;
+        //Check if point variable is already set
+        if (!points) {
+          points = 0;
+        } else {
+          points += 1;
+        }
         // Save the updated points value to a cookie
         setCookie("points", points, 365);
         document.getElementById("points").innerHTML = points;
