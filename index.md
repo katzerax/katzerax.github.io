@@ -1,7 +1,3 @@
-//## Portfolio
-
-//---
-
 ### Projects
 
 [Project 1 Title](/sample_page)
