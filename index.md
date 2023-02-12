@@ -1,7 +1,7 @@
 ### Projects
 
-[Project 1 Title](/sample_page)
-<img src="images/dummy_thumbnail.jpg?raw=true"/>
+[Destiny2DPSGraphPY](/d2dps)
+<img src="images/d2dpsgraphs.png?raw=true"/>
 
 ---
 [Project 2 Title](/pdf/sample_presentation.pdf)
