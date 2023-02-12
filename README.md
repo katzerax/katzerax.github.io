@@ -1,2 +1,2 @@
 # katzerax.github.io
-portfolio website
+portfolio website (one day hopefully lmao)
