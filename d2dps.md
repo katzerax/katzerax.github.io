@@ -82,11 +82,39 @@ if args.input_mode == "cli":
 ```
 You can see here that by default, it will use the user friendly dialogue, and start to create a dictionary for the weapon information that it then intends to write to the json file.
 
+Below is the main loop that is the backbone of the program. It is responsible for the primary math.
+```python
+    for i in range(data_points):
+
+#dear readers, I am the skipping code on perks here. (weapon modifiers)
+
+        #weapon firing
+        if shots_left_reserve == 0: # reserve check
+            total_damage = total_damage
+        elif shots_left_mag == 0: # reload
+            next_fire += output_reload_time
+            next_fire -= fire_delay if delay_first_shot == 0 else 0 #roxy: previously was waiting for fire delay, 
+            next_fire = round(next_fire, roundingcoeff) #even when the weapon would not be a charge weapon (contributed to rockets looking bad)
+            shots_fired = 0 #resetting shots fired for triple tap and fourth times the charm on reload
+            reload_count += 1 #so Clown knows to not check
+            shots_left_mag = magazine_capacity
+        elif time_elapsed == next_fire: # checks for weapon fire rate
+            total_damage += shot_dmg_output
+            next_fire += fire_delay
+            next_fire = round(next_fire, roundingcoeff) #rounding because i love python
+            shots_fired += 1
+            shots_fired_ff += 1 #for focused fury specifically :P
+            shots_left_mag -= 1
+            shots_left_reserve -= 1
+        time_elapsed += x_increments
+        time_elapsed = round(time_elapsed, roundingcoeff)
+        
+
+        t_dmg.append(total_damage)
+```
+As you can see total damage is an array, which being utilized with the time array, is then put into a new array, essentially deriving the current DPS over time.
+
 ### 3. Additional Credits
 - Roxy/vcat
 - Snark
 <img src="images/d2dpsgraphs.png?raw=true"/>
-
-### 4. Potential To-Do's:
-
-WIP
