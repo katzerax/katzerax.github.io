@@ -86,36 +86,66 @@ You can see here that by default, it will use the user friendly dialogue, and st
 Below is the main loop that is the backbone of the program. It is responsible for the primary math.
 ```python
     for i in range(data_points):
-
-#dear readers, I am the skipping code on perks here. (weapon modifiers)
+        #perks
+        shot_dmg_output = damage_per_shot
+        fire_delay = round(60/fire_rate, roundingcoeff)
+        output_reload_time = round(reload_time, roundingcoeff)
+        if TT_On: #1
+            shots_left_mag, shots_left_reserve, tt_delay, tt_delay_check = TripleTap(shots_fired,shots_left_mag,shots_left_reserve,tt_delay,tt_delay_check)
+        if FTTC_On: #2
+            shots_left_mag, shots_left_reserve, fttc_delay, fttc_delay_check = FTTC(shots_fired,shots_left_mag,shots_left_reserve,fttc_delay,fttc_delay_check)
+        if VS_On: #3
+            shots_left_mag, veist_check = VeistStinger(shots_fired,shots_left_mag,magazine_capacity,veist_overflow_cross,veist_check)
+        if CC_On: #4
+            clown_check, shots_left_mag = ClownCartridge(magazine_capacity, shots_left_mag, clown_check, reload_count)
+        if OF_On: #5
+            shots_left_mag, of_check, veist_overflow_cross = Overflow(shots_left_mag,of_check,delay_first_shot,veist_overflow_cross,magazine_capacity)
+        if RH_On: #6
+            if shots_left_mag == 0:
+                output_reload_time = RapidHit(output_reload_time,rh_stacks,shots_fired,roundingcoeff)
+        if VW_On: #7
+            shot_dmg_output = VorpalWeapon(weapon_class,shot_dmg_output)
+        if FF_On: #8
+            shot_dmg_output, FFActive, ff_time_check, shots_fired_ff = FocusedFury(FFActive,shots_fired_ff,magazine_capacity,time_elapsed,shot_dmg_output,ff_time_check)
+        if HIR_On: #9
+            if enhanced_perks == 1:
+                shot_dmg_output = HIREnhanced(shots_left_mag,magazine_capacity,shot_dmg_output)
+            else:
+                shot_dmg_output = HighImpactReserves(shots_left_mag,magazine_capacity,shot_dmg_output)
+        if FL_On: #10
+            shot_dmg_output = FiringLine(shot_dmg_output)
+        #if EL_On: #11
+        if CasP_On: #12
+            fire_delay = CascadePoint(fire_delay,roundingcoeff,fire_rate,cascade_fr)
+        if EP_On: #13
+            shot_dmg_output = ExplosivePayload(shot_dmg_output)
 
         #weapon firing
-        if shots_left_reserve == 0: # reserve check
+        if shots_left_reserve == 0:
             total_damage = total_damage
-        elif shots_left_mag == 0: # reload
+        elif shots_left_mag == 0:
             next_fire += output_reload_time
-            next_fire -= fire_delay if delay_first_shot == 0 else 0 #roxy: previously was waiting for fire delay, 
-            next_fire = round(next_fire, roundingcoeff) #even when the weapon would not be a charge weapon (contributed to rockets looking bad)
-            shots_fired = 0 #resetting shots fired for triple tap and fourth times the charm on reload
-            reload_count += 1 #so Clown knows to not check
+            next_fire -= fire_delay if delay_first_shot == 0 else 0
+            next_fire = round(next_fire, roundingcoeff)
+            shots_fired = 0 
+            reload_count += 1 
             shots_left_mag = magazine_capacity
-        elif time_elapsed == next_fire: # checks for weapon fire rate
+        elif time_elapsed == next_fire: 
             total_damage += shot_dmg_output
             next_fire += fire_delay
-            next_fire = round(next_fire, roundingcoeff) #rounding because i love python
+            next_fire = round(next_fire, roundingcoeff) 
             shots_fired += 1
-            shots_fired_ff += 1 #for focused fury specifically :P
+            shots_fired_ff += 1 
             shots_left_mag -= 1
             shots_left_reserve -= 1
         time_elapsed += x_increments
         time_elapsed = round(time_elapsed, roundingcoeff)
-        
 
         t_dmg.append(total_damage)
 ```
 As you can see total damage is an array, which being utilized with the time array, is then put into a new array, essentially deriving the current DPS over time.
 
 ### 3. Additional Credits
-- Roxy/vcat
-- Snark
+- vcat
+- snark
 <img src="images/d2dpsgraphs.png?raw=true"/>
