@@ -11,7 +11,8 @@ This is intended to be automation of an already existing style of graph used by 
 ### 2. Explanation of the code
 
 I will explain parts, but not all of, the code. Make sure you visit the repository itself to check out the code on your own. It is highly likely that my explanations will quickly go out of date, as this is an actively worked on code repository. It might fundamentally change after the date that I am writing this (currently Feb 20, 2023).
-https://github.com/katzerax/Destiny2DPSGraphPY
+
+[https://github.com/katzerax/Destiny2DPSGraphPY](https://github.com/katzerax/Destiny2DPSGraphPY)
 
 Let's start with the arguments. 
 
