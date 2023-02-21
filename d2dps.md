@@ -146,7 +146,8 @@ Below is the main loop that is the backbone of the program. It is responsible fo
 As you can see total damage is an array, which being utilized with the time array, is then put into a new array, essentially deriving the current DPS over time.
 
 ### 3. Additional Credits
-- vcat
-- snark
+- [vcat](https://github.com/vixicat)
+- [snark](https://github.com/rare-snark)
+### 4. Example Graphs
 <img src="images/d2dpsgraphs1.png?raw=true"/>
 <img src="images/d2dpsgraphs2.png?raw=true"/>
