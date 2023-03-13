@@ -1,5 +1,5 @@
 ### Projects
 
-[Destiny2DPSGraphPY (click here)](/d2dps)
+[Destiny2DPSGraphPY](/d2dps)
 
 [<img src="images/graphwithtitle.png?raw=true"/>](/d2dps)
