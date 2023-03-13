@@ -149,6 +149,7 @@ As you can see total damage is an array, which being utilized with the time arra
 ### 3. Additional Credits
 - [vcat](https://github.com/vixicat)
 - [snark](https://github.com/rare-snark)
+
 ### 4. Example Graphs
 <img src="images/d2dpsgraphs1.png?raw=true"/>
 <img src="images/d2dpsgraphs2.png?raw=true"/>
